@@ -90,3 +90,7 @@
   border: 1px solid #999;
   padding-left: 12px;
 }
+
+.container-box {
+  position: relative;
+}
