@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const FilmItem = ({ film, deleteFilm }) => (
   <li>
-    <div>
+    <div className="container-box">
       <h1>{film.title}</h1>
       <p>{film.releaseyear}</p>
       <p>{film.format}</p>
