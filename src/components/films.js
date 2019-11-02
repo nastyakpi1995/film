@@ -1,5 +1,5 @@
   
-const films = [
+const movies = [
   {
     id: 1,
     title: 'Blazing Saddles',
@@ -37,4 +37,4 @@ const films = [
   },
 ];
 
-export default films;
+export default movies;

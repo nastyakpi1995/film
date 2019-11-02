@@ -5,14 +5,10 @@
 
 .films-list {
   max-width: 900px;
+  padding-top: 20px;
   margin: 0 auto;
 }
 
-/* .films-list li {
-  border-bottom: 1px solid;
-  margin-bottom: 31px;
-  position: relative;
-} */
 .films-list li  {
   display: flex;
   padding: 0 65px 10px;
@@ -22,18 +18,25 @@
   justify-content: space-between;
 }
 
+.box-inform {
+  position: relative;
+  width: 500px;
+}
+
 .destroy {
   position: absolute;
   right: 0;
   top: 0;
-}
-
-.destroy::before {
-  content: "X";
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
+}
+
+.destroy::before {
+  content: "X";
+  font-size: 30px;
+  color: #fff;
 }
 
 .buttonClose {
@@ -89,4 +92,11 @@
   box-sizing: border-box;
   border: 1px solid #999;
   padding-left: 12px;
+}
+
+.divider {
+  height: 2px;
+  background: rgb(150, 137, 137);
+  margin: 0 auto;
+
 }

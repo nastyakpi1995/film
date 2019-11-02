@@ -1,14 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import FilmsList from './FilmsList';
-import './App.css';
 
-function App() {
-  return (
-    <section className="App">
-      <FilmsList />
-    </section>
-  );
-}
+const App = () => (
+  <section className="todoapp">
+    <FilmsList /> 
+  </section>
+);
 
-export default App
+const mapState = () => ({
+  // todosLength: todos.length,
+});
+
+export default connect(mapState)(App);
+
+// App.propTypes = appPropTypes;

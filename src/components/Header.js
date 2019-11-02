@@ -1,87 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from './../redux/store';
 
-class Header extends React.Component {
-  state = {
-    title: '',
-    stars: '',
-    releaseyear: '',
-    format: '',
-  }
-
-  hanleSubmit = (event) => {
+const Header = ({ addFilms, setIsOpen }) => {
+  const [ newTitle, setNewTitle ] = useState('');
+  const [ newStars, setNewStars ] = useState('');
+  const [ newReleaseYear, setNewReleaseYear ] = useState('');
+  const [ newFormat, setNewFormat ] = useState('');
+  const hanleSubmit = (event) => {
     event.preventDefault();
-    const { onSubmit } = this.props;
-    const {
-      title, stars, releaseyear, format,
-    } = this.state;
-
-    if (title.length < 1) {
-      return;
-    }
-
-    onSubmit(title, stars, releaseyear, format);
-
-    this.setState({
-      title: '',
-    });
+    
+    addFilms(newTitle, newStars, newReleaseYear, newFormat);
+    setNewTitle('');
+    setNewStars('');
+    setNewReleaseYear('');
+    setNewFormat('')
   }
 
-  handleChange = (event) => {
+  const handleClose = () => {
+    setIsOpen(false); 
+  }
+
+  const handleChange = (event) => {
     const { name, value } = event.target;
-
-    this.setState({
-      [name]: value,
-    });
+    if (name === "newTitle") {
+      setNewTitle(value)
+    } if (name === "newStars") {
+      setNewStars(value)
+    } if (name === "newReleaseYear") {
+      setNewReleaseYear(value)
+    } if (name === "newFormat") {
+      setNewFormat(value)
+    }
   }
-
-  render() {
-    const {
-      title, stars, releaseyear, format,
-    } = this.state;
-    const { handleClose } = this.props;
-
     return (
-      <div>
+      <div className="box">
         <form 
-          onSubmit={this.hanleSubmit} 
+          onSubmit={hanleSubmit} 
           className="add__new__films"
         >
           <p className="films-list">
             enter title
             <input
               type="text"
-              value={title}
+              value={newTitle}
               placeholder="What needs title?"
-              name="title"
-              onChange={this.handleChange}
+              name="newTitle"
+              onChange={handleChange}
           />
           </p>
           <p>enter stars:
           <input
             type="text"
-            value={stars}
+            value={newStars}
             placeholder="What stars?"
-            name="stars"
-            onChange={this.handleChange}
+            name="newStars"
+            onChange={handleChange}
           />
           </p>
           <p>enter yers:
           <input
             type="text"
-            value={releaseyear}
+            value={newReleaseYear}
             placeholder="What releas eyear?"
-            name="releaseyear"
-            onChange={this.handleChange}
+            name="newReleaseYear"
+            onChange={handleChange}
           />
           </p>
           <p> enter format:
           <input
             type="text"
-            value={format}
+            value={newFormat}
             placeholder="What format?"
-            name="format"
-            onChange={this.handleChange}
+            name="newFormat"
+            onChange={handleChange}
           />
           </p>
           
@@ -101,12 +94,15 @@ class Header extends React.Component {
         </form>
       </div>
     );
-  }
 }
 
-Header.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
-};
+const mapActions = dispatch => ({
+  addFilms: (newTitle, newStars, newReleaseYear, newFormat) => dispatch(actions.addFilms(newTitle, newStars, newReleaseYear, newFormat))
+})
 
-export default Header;
+export default connect(null, mapActions)(Header);
+
+Header.propTypes = {
+  onSubmit: PropTypes.func,
+  handleClose: PropTypes.func,
+};
