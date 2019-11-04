@@ -8,14 +8,17 @@ const Header = ({ addFilms, setIsOpen }) => {
   const [ newStars, setNewStars ] = useState('');
   const [ newReleaseYear, setNewReleaseYear ] = useState('');
   const [ newFormat, setNewFormat ] = useState('');
+
   const hanleSubmit = (event) => {
     event.preventDefault();
-    
-    addFilms(newTitle, newStars, newReleaseYear, newFormat);
-    setNewTitle('');
-    setNewStars('');
-    setNewReleaseYear('');
-    setNewFormat('')
+    if (newTitle.length > 1 && newStars.length > 1 && newReleaseYear.length > 1 ) {
+      addFilms(newTitle, newStars, newReleaseYear, newFormat);
+      setNewTitle('');
+      setNewStars('');
+      setNewReleaseYear('');
+      setNewFormat('');
+    }
+      
   }
 
   const handleClose = () => {
@@ -25,9 +28,9 @@ const Header = ({ addFilms, setIsOpen }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "newTitle") {
-      setNewTitle(value)
+      setNewTitle(value);
     } if (name === "newStars") {
-      setNewStars(value)
+      setNewStars(value);
     } if (name === "newReleaseYear") {
       setNewReleaseYear(value)
     } if (name === "newFormat") {
@@ -69,13 +72,11 @@ const Header = ({ addFilms, setIsOpen }) => {
           />
           </p>
           <p> enter format:
-          <input
-            type="text"
-            value={newFormat}
-            placeholder="What format?"
-            name="newFormat"
-            onChange={handleChange}
-          />
+            <select className="add__new__films_select" onChange={handleChange}  name="newFormat" value={newFormat}>
+              <option>DVD</option>
+              <option>VHS</option>
+              <option>Blue-Ray</option>
+            </select>
           </p>
           
           <button

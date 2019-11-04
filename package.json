@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.5.2",
     "classnames": "^2.2.6",
     "node-uuid": "^1.4.8",
     "react": "^16.11.0",

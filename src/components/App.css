@@ -94,6 +94,16 @@
   padding-left: 12px;
 }
 
+.add__new__films_select {
+  display: flex;
+  margin: 15px 0;
+  align-items: center;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  padding-left: 12px;
+}
+
 .divider {
   height: 2px;
   background: rgb(150, 137, 137);

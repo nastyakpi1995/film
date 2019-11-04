@@ -2,6 +2,7 @@ import React from 'react';
 // import { connect } from 'react-redux';
 
 import FilmsList from './FilmsList';
+import './App.css';
 // import * as actionCreate from './../redux/store';
 
 class App extends React.Component {

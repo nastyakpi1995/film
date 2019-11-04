@@ -1,7 +1,6 @@
-/* eslint-disable no-shadow */
+
 import React from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import { setSearchProps } from './../redux/store';
 
 const FilterForm = ({ setSearch }) => {
@@ -19,18 +18,11 @@ const FilterForm = ({ setSearch }) => {
   );
 };
 
-
-const getData = state => ({
-  // films: state.films,
-  // currentSearch: getSearchText(state),
-  // currentSProp: getSearchProps(state),
-});
-
 const getMethods = dispatch => ({
   setSearch: value => dispatch(setSearchProps(value)),
 });
 
 export default connect(
-  getData,
+  null,
   getMethods,
 )(FilterForm);

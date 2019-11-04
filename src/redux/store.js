@@ -57,16 +57,16 @@ const rootReducer = (state = initState || movies, action) => {
   }
 };
 
-// const initialState = {
-//   films: movies,
-//   filmsHidden: movies,
-//   searchText: '',
-//   searchProps: 'title',
-// };
+const initialState = {
+  films: movies,
+  filmsHidden: movies,
+  searchText: '',
+  searchProps: 'title',
+};
 
 const store = createStore(
   rootReducer,
-  // initialState,
+  initialState,
     applyMiddleware(thunk),
 );
 
