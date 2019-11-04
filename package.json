@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "gh-pages": "^2.1.1",
+    "raw-loader": "^3.1.0",
     "redux-devtools": "^3.5.0"
   }
 }

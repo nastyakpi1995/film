@@ -2,11 +2,17 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import movies from '../components/films';
 import uuidv1 from 'uuid/v1';
+import { saveState, loadState } from './localStorageHelper';
+
+// Загрузка из LocaleStorage
+const initState = loadState(movies);
 
 // action
 const ADD_FILMS = 'ADD_FILMS';
 const DELETE_FILM = 'DELETE_FILM';
-const SET_SEARCH = 'set_search';
+const SET_SEARCH = 'SET_SEARCH';
+// const LOCALSTORAGE__GETITEM = 'LOCALSTORAGE__GETITEM';
+// const LOCALSTORAGE__SETITEM = 'LOCALSTORAGE__SETITEM';
 
 // selection
 export const addFilms = 
@@ -15,9 +21,10 @@ export const addFilms =
   })
 export const delete_movie = filmId => ({ type: DELETE_FILM, filmId });
 export const setSearchProps = value => ({ type: SET_SEARCH, value });
+// export const localStorageGetItem = () => ({ type: LOCALSTORAGE__GETITEM });
+// export const localStorageSetItem = () => ({ type: LOCALSTORAGE__SETITEM })
 
-
-const rootReducer = (state, action) => {
+const rootReducer = (state = initState || movies, action) => {
   switch (action.type) {
     case ADD_FILMS: 
       return { ...state,
@@ -50,17 +57,22 @@ const rootReducer = (state, action) => {
   }
 };
 
-const initialState = {
-  films: movies,
-  filmsHidden: movies,
-  searchText: '',
-  searchProps: 'title',
-};
+// const initialState = {
+//   films: movies,
+//   filmsHidden: movies,
+//   searchText: '',
+//   searchProps: 'title',
+// };
 
 const store = createStore(
   rootReducer,
-  initialState,
+  // initialState,
     applyMiddleware(thunk),
 );
+
+// Сохранение в LocaleStorage
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 export default store;
