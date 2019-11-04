@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from './../redux/store';
 
-<<<<<<< HEAD
 const FilmItem = ({ film, deleteFilm }) => {
   
   const handleDelete = (filmId) => {
@@ -33,23 +32,7 @@ const mapActions = dispath => ({
 });
 
 export default connect(null, mapActions)(FilmItem);
-=======
-const FilmItem = ({ film, deleteFilm }) => (
-  <li>
-    <div className="container-box">
-      <h1>{film.title}</h1>
-      <p>{film.releaseyear}</p>
-      <p>{film.format}</p>
-      <p>{film.stars}</p>
-      <button
-        onClick={() => deleteFilm(film.id)}
-        type="button"
-        className="destroy"
-      />
-    </div>
-  </li>
-);
->>>>>>> f5630a7d8355af1a164bde6073c9bb6dfe70c24a
+
 
 FilmItem.propTypes = {
   film: PropTypes.shape({
